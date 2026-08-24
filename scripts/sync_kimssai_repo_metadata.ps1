@@ -1,4 +1,4 @@
-#Requires -Version 7.0
+#Requires -Version 5.1
 <#
 .SYNOPSIS
   Apply descriptions, topics, and housekeeping to public kimssai/* GitHub repos.
@@ -70,7 +70,9 @@ foreach ($name in $repos.Keys) {
         -f description="$($cfg.Description)" 2>&1 | Out-Null
 
     $topicFile = Join-Path $env:TEMP "kimss-topics-$name.json"
-    @{ names = $cfg.Topics } | ConvertTo-Json -Compress | Set-Content -Path $topicFile -Encoding utf8NoBOM
+    $topicJson = @{ names = $cfg.Topics } | ConvertTo-Json -Compress
+    $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+    [System.IO.File]::WriteAllText($topicFile, $topicJson, $utf8NoBom)
     gh api "repos/$Owner/$name/topics" -X PUT `
         -H "Accept: application/vnd.github+json" `
         --input $topicFile 2>&1 | Out-Null
