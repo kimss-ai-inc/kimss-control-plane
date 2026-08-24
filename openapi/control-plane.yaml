@@ -326,7 +326,7 @@ components:
     KimssBearer:
       type: http
       scheme: bearer
-      description: Session JWT or API key via `Authorization: Bearer`
+      description: "Session JWT or API key via Authorization Bearer header"
 
   parameters:
     ServerName:

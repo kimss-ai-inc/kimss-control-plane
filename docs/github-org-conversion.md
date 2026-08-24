@@ -1,8 +1,37 @@
 # Kimss `kimssai` GitHub User → Organization conversion
 
-**Status:** proposed  
+**Status:** pre-work complete — ready for account transform  
 **Account:** [github.com/kimssai](https://github.com/kimssai) (GitHub **User**, created 2015)  
 **Target:** GitHub **Organization** with the same visible name `kimssai`
+
+## Pick up tomorrow (2026-08-26)
+
+Clone this repo on the machine where you will sign in as `kimssai`:
+
+```bash
+git clone https://github.com/kimssai/kimss-control-plane.git
+```
+
+### Already done (2026-08-25)
+
+- [x] Published [kimssai/kimss-control-plane](https://github.com/kimssai/kimss-control-plane) (OpenAPI, examples, conformance tests)
+- [x] Descriptions + discovery topics on all four product repos (`scripts/sync_kimssai_repo_metadata.ps1`)
+- [x] Archived `data-engineering-home-assignment`
+- [x] Vault note: `kimss-docs` → `architecture/kimss-public-repos.md`
+
+### Your steps tomorrow
+
+1. Sign in to GitHub as **`kimssai`** (password + 2FA).
+2. Settings → Account → **Transform account** (if offered). See [Option A](#option-a--convert-user-to-org-if-eligible) below.
+3. If no transform UI: follow [Option B](#option-b--new-org--transfer-most-common).
+4. After transform/transfer, re-wire `kimssApi` secrets:
+   - `KIMSS_SDK_MIRROR_PAT`, `KIMSS_SDK_MIRROR_REPO`
+   - `KIMSS_JAVA_SDK_MIRROR_REPO`, `KIMSS_JAVA_SDK_MIRROR_SSH_KEY`, `KIMSS_JAVA_SDK_WORKFLOW_PAT`
+5. Dry-run mirror: push a no-op to `kimssApi/kimss_sdk/` or trigger `mirror_kimss_sdk.yml` manually.
+6. Verify PyPI package homepage still resolves to `kimssai/kimss-python-sdk`.
+7. Re-run Scorecard / bestpractices.dev if repo URLs changed.
+
+Auth on this machine uses the `kimssai` OAuth token in Windows Credential Manager (`git:https://github.com`). On the other computer, use `gh auth login` as `kimssai` or the same credential flow.
 
 ## Why convert
 
@@ -20,7 +49,7 @@ Public repos (`kimss-python-sdk`, `kimss-python-quickstart`, `kimss-java-sdk`, `
 1. **Owner access** to the `kimssai` user account (password + 2FA).
 2. **No blocking billing** on the account (orgs need a billing manager if using paid features).
 3. **Inventory** of everything owned by `kimssai`:
-   - Public repos (4 today + `kimss-control-plane` when created)
+   - Public repos (four product repos — see inventory below)
    - Deploy keys, PATs, OAuth apps, GitHub Apps
    - PyPI trusted publisher linkage (`kimss` → `kimssai/kimss-python-sdk`)
    - Maven Central / Sonatype namespace (`com.kimss`)
