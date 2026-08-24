@@ -1,0 +1,594 @@
+openapi: 3.1.0
+info:
+  title: Kimss Control Plane API
+  version: 2026-08-25
+  description: |
+    Public contract for Kimss control-plane operations at `https://api.kimss.ai`.
+
+    Inference (OpenAI-compatible chat, Anthropic messages) is documented in
+    kimss-python-quickstart; this spec covers registry, metering, MCP RBAC,
+    audit, and kill switch.
+
+    SSOT runtime: kimssApi (eyal81/kimssApi). Curated mirror: kimssai/kimss-control-plane.
+
+    Success responses commonly wrap payloads in `{"res": ...}`.
+servers:
+  - url: https://api.kimss.ai
+    description: Production
+
+tags:
+  - name: system
+    description: Health and status
+  - name: identity
+    description: Session and principal
+  - name: governed-requests
+    description: Monthly governed-request metering (BYOI plans)
+  - name: mcp
+    description: Vaulted MCP server registry and tool RBAC
+  - name: agents
+    description: Agent registry and kill switch
+  - name: audit
+    description: Gateway-verified audit log
+  - name: usage
+    description: Usage events and telemetry
+  - name: telemetry
+    description: Execution summaries and filters
+
+security:
+  - KimssApiKey: []
+  - KimssBearer: []
+
+paths:
+  /health:
+    get:
+      tags: [system]
+      summary: Liveness probe
+      security: []
+      responses:
+        "200":
+          description: OK
+
+  /api/v1/status:
+    get:
+      tags: [system]
+      summary: Dependency status (Postgres, Redis)
+      security: []
+      responses:
+        "200":
+          description: Status payload
+
+  /api/v1/whoami:
+    get:
+      tags: [identity]
+      summary: Current principal, workspace, and IAM sync
+      responses:
+        "200":
+          description: Principal record
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /api/v1/governed-requests/meter:
+    get:
+      tags: [governed-requests]
+      summary: Current-month governed-request meter
+      description: |
+        1 governed request = 1 accepted telemetry event (proxied completion,
+        self-reported usage event, or Hermis step). Developer tier hard-caps at
+        included allowance; paid tiers with overage may exceed included.
+      responses:
+        "200":
+          description: Meter snapshot
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [res]
+                properties:
+                  res:
+                    $ref: "#/components/schemas/GovernedRequestsMeter"
+              examples:
+                developer:
+                  value:
+                    res:
+                      tenant_id: "00000000-0000-0000-0000-000000000001"
+                      year_month: "2026-08"
+                      used: 18420
+                      included: 25000
+                      allows_overage: false
+                      unlimited: false
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /api/v1/mcp-servers:
+    get:
+      tags: [mcp]
+      summary: List active MCP servers for the workspace
+      responses:
+        "200":
+          description: Server list (credentials never returned)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  res:
+                    type: object
+                    properties:
+                      servers:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/McpServerPublic"
+    post:
+      tags: [mcp]
+      summary: Register or upsert an MCP server
+      description: |
+        Auth headers are **write-only** (encrypted `enc.v3` in vault).
+        Requires workspace **admin** role.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/McpServerRegisterRequest"
+      responses:
+        "201":
+          description: Registered server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  res:
+                    $ref: "#/components/schemas/McpServerPublic"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /api/v1/mcp-servers/{server_name}:
+    parameters:
+      - $ref: "#/components/parameters/ServerName"
+    delete:
+      tags: [mcp]
+      summary: Disable (soft-delete) an MCP server
+      description: Requires workspace **admin** role.
+      responses:
+        "200":
+          description: Disabled
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /api/v1/mcp-servers/{server_name}/rotate:
+    parameters:
+      - $ref: "#/components/parameters/ServerName"
+    post:
+      tags: [mcp]
+      summary: Replace vaulted MCP auth headers
+      description: Write-only credential rotation. Requires **admin**.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/McpServerRotateRequest"
+      responses:
+        "200":
+          description: Rotated
+        "400":
+          $ref: "#/components/responses/ValidationError"
+
+  /api/v1/mcp-servers/{server_name}/discover:
+    parameters:
+      - $ref: "#/components/parameters/ServerName"
+    post:
+      tags: [mcp]
+      summary: Discover tools from the MCP server
+      responses:
+        "200":
+          description: Discovery result with `discovered_tools`
+
+  /api/v1/mcp-servers/{server_name}/grants:
+    parameters:
+      - $ref: "#/components/parameters/ServerName"
+    get:
+      tags: [mcp]
+      summary: List MCP tool RBAC grants for a server
+      responses:
+        "200":
+          description: Grant list
+    put:
+      tags: [mcp]
+      summary: Upsert an MCP tool RBAC grant
+      description: |
+        `principal_kind`: `role` | `oid` | `group`.
+        For `role`, `principal_value` must be `reader`, `contributor`, or `admin`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/McpToolGrantUpsertRequest"
+      responses:
+        "200":
+          description: Grant upserted
+    delete:
+      tags: [mcp]
+      summary: Delete an MCP tool RBAC grant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/McpToolGrantDeleteRequest"
+      responses:
+        "200":
+          description: Deleted
+
+  /audit_log/:
+    post:
+      tags: [audit]
+      summary: Query gateway-verified audit events
+      description: Per-tenant `{schema}.audit_log` table. Non-admin scope `self` limits to caller.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuditLogRequest"
+      responses:
+        "200":
+          description: Audit rows
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  res:
+                    type: object
+                    properties:
+                      audit_log:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/AuditLogEntry"
+
+  /agent_set_status/:
+    post:
+      tags: [agents]
+      summary: Kill switch — enable or disable an agent
+      description: |
+        Sets `iam.agent_definitions.status` to `active` or `disabled`.
+        Disabled agents are rejected on chat/run and usage ingest.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AgentSetStatusRequest"
+      responses:
+        "200":
+          description: Status updated
+        "400":
+          $ref: "#/components/responses/ValidationError"
+
+  /v1/agents/register:
+    post:
+      tags: [agents]
+      summary: Register an agent in the control plane
+      description: Requires API key with `management` scope.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: See kimss-python-sdk `agents.register` and kimssApi route handler.
+      responses:
+        "200":
+          description: Registered agent
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /v1/usage/events:
+    post:
+      tags: [usage]
+      summary: Self-reported BYO usage events
+      description: |
+        Kill-switched agents are rejected. Zero-rated for Kimss credits but
+        counts toward governed requests when applicable.
+      responses:
+        "200":
+          description: Accepted
+        "429":
+          $ref: "#/components/responses/GovernedRequestsExhausted"
+
+  /api/v1/me/usage:
+    get:
+      tags: [telemetry]
+      summary: Personal usage breakdown for the caller
+      responses:
+        "200":
+          description: Usage summary
+
+  /api/v1/telemetry/execution-summary:
+    get:
+      tags: [telemetry]
+      summary: SDK execution log summary
+      responses:
+        "200":
+          description: Execution summary
+
+components:
+  securitySchemes:
+    KimssApiKey:
+      type: apiKey
+      in: header
+      name: X-Kimss-Key
+      description: Long-lived Kimss API key (`kimss_...`)
+    KimssBearer:
+      type: http
+      scheme: bearer
+      description: Session JWT or API key via `Authorization: Bearer`
+
+  parameters:
+    ServerName:
+      name: server_name
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+      description: MCP server name (1–64 chars)
+
+  schemas:
+    GovernedRequestsMeter:
+      type: object
+      required: [tenant_id, year_month, used, allows_overage, unlimited]
+      properties:
+        tenant_id:
+          type: string
+        year_month:
+          type: string
+          pattern: "^\\d{4}-\\d{2}$"
+          example: "2026-08"
+        used:
+          type: integer
+          minimum: 0
+        included:
+          type: integer
+          nullable: true
+          description: Null = unlimited (Enterprise negotiated)
+        allows_overage:
+          type: boolean
+        unlimited:
+          type: boolean
+
+    McpServerRegisterRequest:
+      type: object
+      required: [server_name, base_url]
+      properties:
+        server_name:
+          type: string
+        base_url:
+          type: string
+          format: uri
+        display_name:
+          type: string
+          maxLength: 200
+        auth_headers:
+          description: JSON object or bearer token string (write-only)
+          oneOf:
+            - type: object
+              additionalProperties:
+                type: string
+            - type: string
+        auth_mode:
+          type: string
+          enum: [none, headers]
+
+    McpServerRotateRequest:
+      type: object
+      required: [auth_headers]
+      properties:
+        auth_headers:
+          oneOf:
+            - type: object
+              additionalProperties:
+                type: string
+            - type: string
+
+    McpServerPublic:
+      type: object
+      description: Never includes decrypted credentials
+      properties:
+        id:
+          type: integer
+        tenant_id:
+          type: string
+        server_name:
+          type: string
+        display_name:
+          type: string
+        base_url:
+          type: string
+        auth_mode:
+          type: string
+          enum: [none, headers]
+        status:
+          type: string
+          example: active
+        discovered_tools:
+          type: array
+          items:
+            type: string
+        has_credential:
+          type: boolean
+        credential_write_only:
+          type: boolean
+          const: true
+        vault_scheme:
+          type: string
+          enum: [enc.v3, envelope, none]
+
+    McpToolGrantUpsertRequest:
+      type: object
+      required: [tool_name, principal_kind, principal_value]
+      properties:
+        tool_name:
+          type: string
+        principal_kind:
+          type: string
+          enum: [role, oid, group]
+        principal_value:
+          type: string
+          description: Role name, Entra OID, or group id
+
+    McpToolGrantDeleteRequest:
+      type: object
+      required: [tool_name, principal_kind, principal_value]
+      properties:
+        tool_name:
+          type: string
+        principal_kind:
+          type: string
+          enum: [role, oid, group]
+        principal_value:
+          type: string
+
+    AuditLogRequest:
+      type: object
+      properties:
+        entity_type:
+          type: string
+          description: agent, thread, vector_store, file, ...
+        entity_id:
+          type: string
+        user_id:
+          type: string
+        action:
+          type: string
+          enum: [create, update, delete]
+        from_ts:
+          type: string
+          format: date-time
+        to_ts:
+          type: string
+          format: date-time
+        days:
+          type: integer
+          default: 30
+        limit:
+          type: integer
+          default: 500
+          maximum: 2000
+        active_workspace_id:
+          type: string
+        workspace_id:
+          type: string
+        tenant_id:
+          type: string
+
+    AuditLogEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        ts:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+        user_email:
+          type: string
+        action:
+          type: string
+        entity_type:
+          type: string
+        entity_id:
+          type: string
+        entity_name:
+          type: string
+        detail:
+          type: object
+        ip_address:
+          type: string
+        traffic_class:
+          type: string
+
+    AgentSetStatusRequest:
+      type: object
+      required: [status]
+      properties:
+        id:
+          type: string
+          description: Agent id (alias assistant_id / agent_id)
+        assistant_id:
+          type: string
+        agent_id:
+          type: string
+        status:
+          type: string
+          enum: [active, disabled]
+        name:
+          type: string
+
+    KimssErrorDetail:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+
+    GovernedRequestsExhaustedDetail:
+      allOf:
+        - $ref: "#/components/schemas/KimssErrorDetail"
+        - type: object
+          properties:
+            error:
+              type: string
+              const: governed_requests_exhausted
+            used:
+              type: integer
+            included:
+              type: integer
+            year_month:
+              type: string
+
+  responses:
+    Unauthorized:
+      description: Missing or invalid auth
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/KimssErrorDetail"
+          example:
+            error: missing_auth
+
+    Forbidden:
+      description: Insufficient role or plan
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/KimssErrorDetail"
+
+    ValidationError:
+      description: Request validation failed
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/KimssErrorDetail"
+          example:
+            error: validation
+            message: server_name must be 1-64 chars
+
+    GovernedRequestsExhausted:
+      description: Developer hard cap — upgrade or wait until next month
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GovernedRequestsExhaustedDetail"
+          example:
+            error: governed_requests_exhausted
+            message: Governed-request allowance reached (25000/25000 this month).
+            used: 25000
+            included: 25000
+            year_month: "2026-08"

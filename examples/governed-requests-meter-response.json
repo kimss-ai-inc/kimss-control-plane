@@ -1,0 +1,10 @@
+{
+  "res": {
+    "tenant_id": "00000000-0000-0000-0000-000000000001",
+    "year_month": "2026-08",
+    "used": 18420,
+    "included": 25000,
+    "allows_overage": false,
+    "unlimited": false
+  }
+}
