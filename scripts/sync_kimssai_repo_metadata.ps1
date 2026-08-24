@@ -38,15 +38,15 @@ $repos = @{
         Topics = $sharedTopics + @("python", "sdk", "pypi", "openai-compatible")
     }
     "kimss-python-quickstart" = @{
-        Description = "5-minute AI gateway quickstart for Python — route OpenAI and Anthropic SDK traffic through identity, audit, policy, and kill-switch controls with a one-line change."
+        Description = "5-minute AI gateway quickstart for Python - route OpenAI and Anthropic SDK traffic through identity, audit, policy, and kill-switch controls with a one-line change."
         Topics = $sharedTopics + @("python", "quickstart", "openai", "anthropic", "tutorial")
     }
     "kimss-java-sdk" = @{
-        Description = "Official Kimss Java SDK (Maven: com.kimss:kimss-java). Control-plane client mirrored from kimssApi — do not edit main as SSOT."
+        Description = "Official Kimss Java SDK (Maven: com.kimss:kimss-java). Control-plane client mirrored from kimssApi - do not edit main as SSOT."
         Topics = $sharedTopics + @("java", "sdk", "maven")
     }
     "kimss-control-plane" = @{
-        Description = "Public hub for the Kimss Secure Enterprise Agent Control Plane — OpenAPI spec, MCP RBAC examples, conformance tests."
+        Description = "Public hub for the Kimss Secure Enterprise Agent Control Plane - OpenAPI spec, MCP RBAC examples, conformance tests."
         Topics = $sharedTopics + @("openapi", "control-plane", "spec")
     }
 }
