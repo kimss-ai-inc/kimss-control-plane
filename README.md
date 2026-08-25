@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-indigo.svg)](LICENSE)
 [![CI](https://github.com/kimss-ai-inc/kimss-control-plane/actions/workflows/ci.yml/badge.svg)](https://github.com/kimss-ai-inc/kimss-control-plane/actions/workflows/ci.yml)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kimss-ai-inc/kimss-control-plane/badge)](https://scorecard.dev/viewer/?uri=github.com/kimss-ai-inc/kimss-control-plane)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/14243/badge)](https://www.bestpractices.dev/en/projects/14243)
 
 **Public hub for the Kimss Secure Enterprise Agent Control Plane** — a model-agnostic API gateway for enterprise AI agents, MCP RBAC, and agent-to-agent integration.
 

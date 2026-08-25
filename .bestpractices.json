@@ -17,7 +17,7 @@
   "contribution_justification": "https://github.com/kimss-ai-inc/kimss-control-plane/blob/main/CONTRIBUTING.md explains SSOT is kimssApi for runtime routes and how to update openapi/control-plane.yaml.",
 
   "contribution_requirements_status": "Met",
-  "contribution_requirements_justification": "CONTRIBUTING.md requires pytest conformance/ and OpenAPI updates when control-plane routes change.",
+  "contribution_requirements_justification": "https://github.com/kimss-ai-inc/kimss-control-plane/blob/main/CONTRIBUTING.md — requires pytest conformance/, OpenAPI updates when control-plane routes change, and forbids inventing undeployed endpoints.",
 
   "floss_license_status": "Met",
   "floss_license_justification": "MIT License in LICENSE. SPDX-style badge on the README.",
@@ -62,7 +62,7 @@
   "release_notes_vulns_justification": "No numbered releases and no publicly known runtime CVEs assigned to this spec tree.",
 
   "report_process_status": "Met",
-  "report_process_justification": "GitHub Issues linked from README Related section and issue templates.",
+  "report_process_justification": "https://github.com/kimss-ai-inc/kimss-control-plane/issues — GitHub Issues linked from README and issue templates.",
   "report_tracker_status": "Met",
   "report_tracker_justification": "https://github.com/kimss-ai-inc/kimss-control-plane/issues",
   "report_responses_status": "Met",
@@ -75,7 +75,7 @@
   "vulnerability_report_process_status": "Met",
   "vulnerability_report_process_justification": "https://github.com/kimss-ai-inc/kimss-control-plane/blob/main/SECURITY.md",
   "vulnerability_report_private_status": "Met",
-  "vulnerability_report_private_justification": "SECURITY.md — email security@kimss.ai and GitHub private vulnerability reporting (enabled 2026-08-25).",
+  "vulnerability_report_private_justification": "https://github.com/kimss-ai-inc/kimss-control-plane/blob/main/SECURITY.md — email security@kimss.ai and GitHub private vulnerability reporting (enabled 2026-08-25).",
   "vulnerability_report_response_status": "N/A",
   "vulnerability_report_response_justification": "No vulnerability reports received in the last 6 months. SECURITY.md commits to acknowledge within 2 business days.",
 
