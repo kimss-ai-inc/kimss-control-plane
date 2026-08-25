@@ -2,5 +2,7 @@
 __pycache__/
 *.pyc
 .venv/
+.playwright-profile/
+.bestpractices-project-id
 node_modules/
 tmp-graphql.json

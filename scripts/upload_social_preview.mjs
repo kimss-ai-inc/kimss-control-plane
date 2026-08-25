@@ -18,27 +18,8 @@ function storageStatePath() {
 }
 
 async function launchContext(storageState, headless) {
-  const launchOpts = { headless };
-  const profileCandidates = [
-    { channel: "chrome", dir: path.join(os.homedir(), "AppData", "Local", "Google", "Chrome", "User Data") },
-    { channel: "msedge", dir: path.join(os.homedir(), "AppData", "Local", "Microsoft", "Edge", "User Data") },
-  ];
-  for (const { channel, dir } of profileCandidates) {
-    if (!fs.existsSync(dir)) continue;
-    try {
-      const browser = await chromium.launchPersistentContext(dir, {
-        ...launchOpts,
-        channel,
-        viewport: { width: 1280, height: 720 },
-      });
-      return { browser, context: browser, page: browser.pages()[0] || (await browser.newPage()) };
-    } catch (err) {
-      console.warn(`${channel} profile launch failed (${err.message}); trying next profile.`);
-    }
-  }
-
   if (!storageState || !fs.existsSync(storageState)) {
-    throw new Error("No browser session available. Run: node scripts/upload_social_preview.mjs --login");
+    throw new Error("No browser session available. Run: node scripts/complete_github_setup.mjs");
   }
 
   const browser = await chromium.launch({ headless });
