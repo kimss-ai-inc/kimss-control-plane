@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+  <title id="title">Kimss Control Plane architecture</title>
+  <desc id="desc">Agents and SDKs connect through the Kimss control plane for identity, policy, audit, metering, and kill switch before reaching vaulted providers and MCP infrastructure.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b0618"/>
+      <stop offset="100%" stop-color="#12082a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c1140"/>
+      <stop offset="100%" stop-color="#140a2c"/>
+    </linearGradient>
+    <linearGradient id="hub" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a1460"/>
+      <stop offset="100%" stop-color="#1a0a3a"/>
+    </linearGradient>
+    <marker id="head" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M1,1 L9,5 L1,9 Z" fill="#8b5cf6"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="520" rx="24" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1278" height="518" rx="23" fill="none" stroke="#4b0082" stroke-width="1.5"/>
+
+  <text x="48" y="44" fill="#c4b5fd" font-family="Segoe UI, system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="2.2">SECURE ENTERPRISE AGENT CONTROL PLANE</text>
+  <text x="48" y="78" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="26" font-weight="700">Govern agents, MCP tools, and inference from one hub</text>
+  <text x="48" y="108" fill="#93a4bf" font-family="Segoe UI, system-ui, sans-serif" font-size="14">OpenAPI contract  ·  dual-listener gateway  ·  agent-to-agent integration</text>
+
+  <!-- Left column -->
+  <rect x="48" y="140" width="250" height="300" rx="18" fill="url(#panel)" stroke="#4b556f"/>
+  <text x="72" y="172" fill="#93a4bf" font-family="Segoe UI, system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.4">CLIENTS</text>
+  <rect x="72" y="188" width="202" height="44" rx="10" fill="#1a0033" stroke="#4b556f"/>
+  <text x="173" y="216" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600">OpenAI SDK</text>
+  <rect x="72" y="244" width="202" height="44" rx="10" fill="#1a0033" stroke="#4b556f"/>
+  <text x="173" y="272" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600">Anthropic SDK</text>
+  <rect x="72" y="300" width="202" height="44" rx="10" fill="#1a0033" stroke="#4b556f"/>
+  <text x="173" y="328" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600">Python / Java SDK</text>
+  <rect x="72" y="356" width="202" height="44" rx="10" fill="#1a0033" stroke="#4b556f"/>
+  <text x="173" y="384" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600">MCP + A2A agents</text>
+
+  <line x1="308" y1="290" x2="348" y2="290" stroke="url(#accent)" stroke-width="3" marker-end="url(#head)"/>
+
+  <!-- Center hub -->
+  <rect x="360" y="120" width="560" height="340" rx="22" fill="url(#hub)" stroke="#6366f1" stroke-width="2"/>
+  <text x="388" y="156" fill="#c4b5fd" font-family="Segoe UI, system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.6">KIMSS CONTROL PLANE</text>
+  <text x="388" y="188" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="24" font-weight="700">Gateway + policy surface</text>
+  <text x="388" y="214" fill="#a5b4fc" font-family="Segoe UI, system-ui, sans-serif" font-size="14">Identity  ·  MCP RBAC  ·  Audit  ·  Metering  ·  Kill switch</text>
+
+  <rect x="388" y="236" width="240" height="88" rx="14" fill="#2d0059" stroke="#8b5cf6"/>
+  <text x="508" y="268" text-anchor="middle" fill="#c4b5fd" font-family="Segoe UI, system-ui, sans-serif" font-size="12" font-weight="700">INFERENCE LISTENERS</text>
+  <text x="508" y="294" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="13">/v1/chat/completions</text>
+  <text x="508" y="314" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="13">/v1/messages</text>
+
+  <rect x="652" y="236" width="240" height="88" rx="14" fill="#2d0059" stroke="#8b5cf6"/>
+  <text x="772" y="268" text-anchor="middle" fill="#c4b5fd" font-family="Segoe UI, system-ui, sans-serif" font-size="12" font-weight="700">CONTROL PLANE API</text>
+  <text x="772" y="294" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="13">MCP registry + grants</text>
+  <text x="772" y="314" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="13">Governed requests meter</text>
+
+  <rect x="388" y="344" width="504" height="88" rx="14" fill="#140a2c" stroke="#4b556f"/>
+  <text x="408" y="376" fill="#c4b5fd" font-family="Segoe UI, system-ui, sans-serif" font-size="12" font-weight="700">HERMIS ORCHESTRATION</text>
+  <text x="408" y="402" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="14">Agent attribution, spend policy, Article 12 audit trail, authoritative kill switch</text>
+
+  <line x1="928" y1="290" x2="968" y2="290" stroke="url(#accent)" stroke-width="3" marker-end="url(#head)"/>
+
+  <!-- Right column -->
+  <rect x="982" y="140" width="250" height="300" rx="18" fill="url(#panel)" stroke="#4b556f"/>
+  <text x="1006" y="172" fill="#93a4bf" font-family="Segoe UI, system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.4">YOUR INFRA</text>
+  <rect x="1006" y="188" width="202" height="44" rx="10" fill="#1a0033" stroke="#4b556f"/>
+  <text x="1107" y="216" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600">OpenAI / Anthropic</text>
+  <rect x="1006" y="244" width="202" height="44" rx="10" fill="#1a0033" stroke="#4b556f"/>
+  <text x="1107" y="272" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600">Azure / Foundry</text>
+  <rect x="1006" y="300" width="202" height="44" rx="10" fill="#1a0033" stroke="#4b556f"/>
+  <text x="1107" y="328" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600">Custom models</text>
+  <rect x="1006" y="356" width="202" height="44" rx="10" fill="#1a0033" stroke="#4b556f"/>
+  <text x="1107" y="384" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600">MCP tool servers</text>
+
+  <rect x="48" y="460" width="1184" height="44" rx="14" fill="#140a2c" stroke="#4b556f"/>
+  <text x="72" y="488" fill="#a5b4fc" font-family="Segoe UI, system-ui, sans-serif" font-size="14">Live API: api.kimss.ai  ·  Public spec: openapi/control-plane.yaml  ·  Quickstart: kimss-python-quickstart</text>
+</svg>

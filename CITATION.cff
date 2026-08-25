@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "Kimss Control Plane — Secure Enterprise Agent API Gateway"
+message: "If you use this control-plane spec in your research or documentation, please cite it as:"
+type: software
+authors:
+  - name: "Kimss AI"
+    website: "https://kimss.ai"
+repository-code: "https://github.com/kimss-ai-inc/kimss-control-plane"
+url: "https://github.com/kimss-ai-inc/kimss-control-plane"
+license: MIT
+keywords:
+  - ai-gateway
+  - llm-security
+  - mcp
+  - ai-agents
+  - enterprise-ai
+  - zero-trust
+  - api-gateway
+  - governance
+  - openapi
