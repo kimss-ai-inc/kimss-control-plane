@@ -9,7 +9,7 @@ info:
     kimss-python-quickstart; this spec covers registry, metering, MCP RBAC,
     audit, and kill switch.
 
-    SSOT runtime: kimssApi (eyal81/kimssApi). Curated mirror: kimssai/kimss-control-plane.
+    SSOT runtime: kimssApi (kimssai/kimssApi). Curated mirror: kimssai/kimss-control-plane.
 
     Success responses commonly wrap payloads in `{"res": ...}`.
 servers:

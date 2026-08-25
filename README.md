@@ -61,7 +61,7 @@ Plans meter **governed requests** (not Kimss credits). Developer tier: 25,000/mo
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). SSOT for the live API is `kimssApi` (`eyal81/kimssApi`). Update this spec when control-plane routes change on `main`.
+See [CONTRIBUTING.md](CONTRIBUTING.md). SSOT for the live API is `kimssApi` (`kimssai/kimssApi`). Update this spec when control-plane routes change on `main`.
 
 ## License
 
