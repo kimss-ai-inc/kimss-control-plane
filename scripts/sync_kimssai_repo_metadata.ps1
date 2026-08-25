@@ -14,7 +14,7 @@
   .\sync_kimssai_repo_metadata.ps1 -ArchiveStray
 #>
 param(
-    [string] $Owner = "kimssai",
+    [string] $Owner = "kimss-ai-inc",
     [switch] $ArchiveStray,
     [switch] $DryRun
 )
@@ -46,7 +46,7 @@ $repos = @{
         Topics = $sharedTopics + @("java", "sdk", "maven")
     }
     "kimss-control-plane" = @{
-        Description = "Public hub for the Kimss Secure Enterprise Agent Control Plane - OpenAPI spec, MCP RBAC examples, conformance tests."
+        Description = "Public hub for the Kimss Secure Enterprise Agent Control Plane — OpenAPI spec, MCP RBAC, A2A onboarding, Anthropic guide, security badges."
         Topics = $sharedTopics + @("openapi", "control-plane", "spec")
     }
 }
