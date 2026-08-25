@@ -10,9 +10,9 @@ Kimss is not a chat platform. Customers bring their own agents, models, and infr
 
 | Goal | Repo |
 |------|------|
-| Route OpenAI / Anthropic traffic through Kimss in 5 minutes | [kimss-python-quickstart](https://github.com/kimssai/kimss-python-quickstart) |
-| Python control-plane SDK (`pip install kimss`) | [kimss-python-sdk](https://github.com/kimssai/kimss-python-sdk) |
-| Java control-plane SDK (Maven `com.kimss:kimss-java`) | [kimss-java-sdk](https://github.com/kimssai/kimss-java-sdk) |
+| Route OpenAI / Anthropic traffic through Kimss in 5 minutes | [kimss-python-quickstart](https://github.com/kimss-ai-inc/kimss-python-quickstart) |
+| Python control-plane SDK (`pip install kimss`) | [kimss-python-sdk](https://github.com/kimss-ai-inc/kimss-python-sdk) |
+| Java control-plane SDK (Maven `com.kimss:kimss-java`) | [kimss-java-sdk](https://github.com/kimss-ai-inc/kimss-java-sdk) |
 | Product docs & trust center | [kimss.ai](https://kimss.ai) |
 
 ### Inference (no Kimss package required)
@@ -61,7 +61,7 @@ Plans meter **governed requests** (not Kimss credits). Developer tier: 25,000/mo
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). SSOT for the live API is `kimssApi` (`kimssai/kimssApi`). Update this spec when control-plane routes change on `main`.
+See [CONTRIBUTING.md](CONTRIBUTING.md). SSOT for the live API is `kimssApi` (`kimss-ai-inc/kimssApi`). Update this spec when control-plane routes change on `main`.
 
 ## License
 

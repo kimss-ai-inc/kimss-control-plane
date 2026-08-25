@@ -2,7 +2,7 @@
 
 ## Source of truth
 
-The live Kimss API is implemented in **`kimssApi`** (`kimssai/kimssApi`, `src/app.py` + `kimssapi_functions/`). This repo is a **public contract mirror** — not the runtime.
+The live Kimss API is implemented in **`kimssApi`** (`kimss-ai-inc/kimssApi`, `src/app.py` + `kimssapi_functions/`). This repo is a **public contract mirror** — not the runtime.
 
 When you change control-plane routes or request/response shapes in kimssApi:
 
