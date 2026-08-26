@@ -8,7 +8,7 @@ import os from "os";
 import path from "path";
 import { chromium } from "playwright";
 
-const repoUrl = "https://github.com/kimss-ai-inc/kimss-control-plane";
+const repoUrl = "https://github.com/kimss-ai/kimss-control-plane";
 const base = "https://www.bestpractices.dev";
 
 function ghStorage() {

@@ -70,7 +70,7 @@ Developer tier (Always Free): 25,000 governed requests/month, 14-day telemetry, 
 ### 3. Route traffic
 
 ```bash
-git clone https://github.com/kimss-ai-inc/kimss-python-quickstart.git
+git clone https://github.com/kimss-ai/kimss-python-quickstart.git
 cd kimss-python-quickstart
 pip install -r requirements.txt
 cp .env.example .env   # KIMSS_API_KEY, KIMSS_AGENT_ID, KIMSS_MODEL
@@ -119,7 +119,7 @@ See [`examples/governed-requests-meter-response.json`](../examples/governed-requ
 
 ## Related
 
-- Runnable Python tutorial: [kimss-python-quickstart](https://github.com/kimss-ai-inc/kimss-python-quickstart)
+- Runnable Python tutorial: [kimss-python-quickstart](https://github.com/kimss-ai/kimss-python-quickstart)
 - Agent-to-agent rules: [AI_INTEGRATION.md](../AI_INTEGRATION.md)
 - Control-plane spec: [openapi/control-plane.yaml](../openapi/control-plane.yaml)
 - Hub README: [README.md](../README.md)

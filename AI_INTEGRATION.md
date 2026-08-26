@@ -38,10 +38,10 @@ Anthropic: see [docs/anthropic-onboarding.md](docs/anthropic-onboarding.md).
 
 ## Runnable tutorial
 
-For copy-paste scripts and a local gateway simulator, use [kimss-python-quickstart](https://github.com/kimss-ai-inc/kimss-python-quickstart).
+For copy-paste scripts and a local gateway simulator, use [kimss-python-quickstart](https://github.com/kimss-ai/kimss-python-quickstart).
 
 ## Related
 
 - [docs/anthropic-onboarding.md](docs/anthropic-onboarding.md)
-- [kimss-python-sdk](https://github.com/kimss-ai-inc/kimss-python-sdk) — control-plane Python client
+- [kimss-python-sdk](https://github.com/kimss-ai/kimss-python-sdk) — control-plane Python client
 - [kimss.ai/trust](https://kimss.ai/trust) — security and compliance

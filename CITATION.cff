@@ -5,8 +5,8 @@ type: software
 authors:
   - name: "Kimss AI"
     website: "https://kimss.ai"
-repository-code: "https://github.com/kimss-ai-inc/kimss-control-plane"
-url: "https://github.com/kimss-ai-inc/kimss-control-plane"
+repository-code: "https://github.com/kimss-ai/kimss-control-plane"
+url: "https://github.com/kimss-ai/kimss-control-plane"
 license: MIT
 keywords:
   - ai-gateway

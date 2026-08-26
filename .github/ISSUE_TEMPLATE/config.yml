@@ -1,11 +1,11 @@
 blank_issues_enabled: false
 contact_links:
   - name: Security vulnerability
-    url: https://github.com/kimss-ai-inc/kimss-control-plane/blob/main/SECURITY.md
+    url: https://github.com/kimss-ai/kimss-control-plane/blob/main/SECURITY.md
     about: Please report security issues privately per our security policy
   - name: Kimss product support
     url: https://kimss.ai
     about: Questions about your Kimss account, billing, or dashboard
   - name: Python quickstart (5-minute tutorial)
-    url: https://github.com/kimss-ai-inc/kimss-python-quickstart
+    url: https://github.com/kimss-ai/kimss-python-quickstart
     about: Runnable examples and local gateway simulator

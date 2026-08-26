@@ -8,7 +8,7 @@ import os from "os";
 import path from "path";
 import { chromium } from "playwright";
 
-const repo = "kimss-ai-inc/kimss-control-plane";
+const repo = "kimss-ai/kimss-control-plane";
 const baseUrl = "https://github.com";
 const imagePath = path.resolve("docs/social-preview.png");
 

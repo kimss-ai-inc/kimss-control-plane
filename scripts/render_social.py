@@ -118,7 +118,7 @@ def main() -> None:
 
     draw.text(
         (W // 2, 558),
-        "github.com/kimss-ai-inc/kimss-control-plane",
+        "github.com/kimss-ai/kimss-control-plane",
         font=fonts["footer"],
         fill=(107, 114, 128),
         anchor="mm",
