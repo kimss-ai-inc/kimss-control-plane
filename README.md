@@ -1,8 +1,8 @@
 # Kimss Control Plane
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-indigo.svg)](LICENSE)
-[![CI](https://github.com/kimss-ai-inc/kimss-control-plane/actions/workflows/ci.yml/badge.svg)](https://github.com/kimss-ai-inc/kimss-control-plane/actions/workflows/ci.yml)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kimss-ai-inc/kimss-control-plane/badge)](https://scorecard.dev/viewer/?uri=github.com/kimss-ai-inc/kimss-control-plane)
+[![CI](https://github.com/kimss-ai/kimss-control-plane/actions/workflows/ci.yml/badge.svg)](https://github.com/kimss-ai/kimss-control-plane/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kimss-ai/kimss-control-plane/badge)](https://scorecard.dev/viewer/?uri=github.com/kimss-ai/kimss-control-plane)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/14243/badge)](https://www.bestpractices.dev/en/projects/14243)
 
 **Public hub for the Kimss Secure Enterprise Agent Control Plane** — a model-agnostic API gateway for enterprise AI agents, MCP RBAC, and agent-to-agent integration.
@@ -19,23 +19,14 @@ Kimss is not a chat platform. Customers bring their own agents, models, and infr
 
 ## Start here
 
-<<<<<<< HEAD
 | Goal | Where to go |
 |------|-------------|
-| Route OpenAI / Anthropic traffic in 5 minutes | [kimss-python-quickstart](https://github.com/kimss-ai-inc/kimss-python-quickstart) |
+| Route OpenAI / Anthropic traffic in 5 minutes | [kimss-python-quickstart](https://github.com/kimss-ai/kimss-python-quickstart) |
 | Anthropic onboarding (SDK + env vars + troubleshooting) | [docs/anthropic-onboarding.md](docs/anthropic-onboarding.md) |
-| Python control-plane SDK (`pip install kimss`) | [kimss-python-sdk](https://github.com/kimss-ai-inc/kimss-python-sdk) |
-| Java control-plane SDK (Maven `com.kimss:kimss-java`) | [kimss-java-sdk](https://github.com/kimss-ai-inc/kimss-java-sdk) |
-| Agent-to-agent integration rules | [AI_INTEGRATION.md](AI_INTEGRATION.md) |
-| Product docs & trust center | [kimss.ai](https://kimss.ai) · [Trust Center](https://kimss.ai/trust) |
-=======
-| Goal | Repo |
-|------|------|
-| Route OpenAI / Anthropic traffic through Kimss in 5 minutes | [kimss-python-quickstart](https://github.com/kimss-ai/kimss-python-quickstart) |
 | Python control-plane SDK (`pip install kimss`) | [kimss-python-sdk](https://github.com/kimss-ai/kimss-python-sdk) |
 | Java control-plane SDK (Maven `com.kimss:kimss-java`) | [kimss-java-sdk](https://github.com/kimss-ai/kimss-java-sdk) |
-| Product docs & trust center | [kimss.ai](https://kimss.ai) |
->>>>>>> 60d45fa (chore: retarget GitHub owner slugs to kimss-ai after org rename)
+| Agent-to-agent integration rules | [AI_INTEGRATION.md](AI_INTEGRATION.md) |
+| Product docs & trust center | [kimss.ai](https://kimss.ai) · [Trust Center](https://kimss.ai/trust) |
 
 ---
 
@@ -103,7 +94,7 @@ curl -s -H "Authorization: Bearer kimss_..." \
 
 Response shape: [`examples/governed-requests-meter-response.json`](examples/governed-requests-meter-response.json).
 
-Runnable scripts and a local gateway simulator: [kimss-python-quickstart](https://github.com/kimss-ai-inc/kimss-python-quickstart).
+Runnable scripts and a local gateway simulator: [kimss-python-quickstart](https://github.com/kimss-ai/kimss-python-quickstart).
 
 ---
 
@@ -141,14 +132,10 @@ Plans meter **governed requests** (not Kimss credits). Developer tier: 25,000/mo
 
 ## Contributing
 
-<<<<<<< HEAD
-See [CONTRIBUTING.md](CONTRIBUTING.md). SSOT for the live API is `kimssApi`. Update this spec when control-plane routes change on `main`.
+See [CONTRIBUTING.md](CONTRIBUTING.md). SSOT for the live API is `kimssApi` (`kimss-ai/kimssApi`). Update this spec when control-plane routes change on `main`.
 
 - Security: [SECURITY.md](SECURITY.md)
 - Code of conduct: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-=======
-See [CONTRIBUTING.md](CONTRIBUTING.md). SSOT for the live API is `kimssApi` (`kimss-ai/kimssApi`). Update this spec when control-plane routes change on `main`.
->>>>>>> 60d45fa (chore: retarget GitHub owner slugs to kimss-ai after org rename)
 
 ## License
 
