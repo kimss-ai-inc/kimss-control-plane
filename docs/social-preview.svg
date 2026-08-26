@@ -54,5 +54,5 @@
   <rect x="1004" y="354" width="172" height="40" rx="10" fill="#1a0033" stroke="#4b556f"/>
   <text x="1090" y="380" text-anchor="middle" fill="#eef0fa" font-family="Segoe UI, system-ui, sans-serif" font-size="14">Custom models</text>
 
-  <text x="640" y="570" text-anchor="middle" fill="#6b7280" font-family="Segoe UI, system-ui, sans-serif" font-size="16">github.com/kimss-ai-inc/kimss-control-plane</text>
+  <text x="640" y="570" text-anchor="middle" fill="#6b7280" font-family="Segoe UI, system-ui, sans-serif" font-size="16">github.com/kimss-ai/kimss-control-plane</text>
 </svg>

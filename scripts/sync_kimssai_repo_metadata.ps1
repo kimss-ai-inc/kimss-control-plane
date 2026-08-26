@@ -14,7 +14,7 @@
   .\sync_kimssai_repo_metadata.ps1 -ArchiveStray
 #>
 param(
-    [string] $Owner = "kimss-ai-inc",
+    [string] $Owner = "kimss-ai",
     [switch] $ArchiveStray,
     [switch] $DryRun
 )
