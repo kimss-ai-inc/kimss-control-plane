@@ -1,7 +1,7 @@
 # Kimss `kimssai` GitHub User → Organization conversion
 
 **Status:** pre-work complete — ready for account transform  
-**Account:** [github.com/kimss-ai-inc](https://github.com/kimss-ai-inc) (GitHub **User**, created 2015)  
+**Account:** [github.com/kimss-ai](https://github.com/kimss-ai) (GitHub **User**, created 2015)  
 **Target:** GitHub **Organization** with the same visible name `kimssai`
 
 ## Pick up tomorrow (2026-08-26)
@@ -9,12 +9,12 @@
 Clone this repo on the machine where you will sign in as `kimssai`:
 
 ```bash
-git clone https://github.com/kimss-ai-inc/kimss-control-plane.git
+git clone https://github.com/kimss-ai/kimss-control-plane.git
 ```
 
 ### Already done (2026-08-25)
 
-- [x] Published [kimss-ai-inc/kimss-control-plane](https://github.com/kimss-ai-inc/kimss-control-plane) (OpenAPI, examples, conformance tests)
+- [x] Published [kimss-ai/kimss-control-plane](https://github.com/kimss-ai/kimss-control-plane) (OpenAPI, examples, conformance tests)
 - [x] Descriptions + discovery topics on all four product repos (`scripts/sync_kimssai_repo_metadata.ps1`)
 - [x] Archived `data-engineering-home-assignment`
 - [x] Vault note: `kimss-docs` → `architecture/kimss-public-repos.md`
@@ -28,7 +28,7 @@ git clone https://github.com/kimss-ai-inc/kimss-control-plane.git
    - `KIMSS_SDK_MIRROR_PAT`, `KIMSS_SDK_MIRROR_REPO`
    - `KIMSS_JAVA_SDK_MIRROR_REPO`, `KIMSS_JAVA_SDK_MIRROR_SSH_KEY`, `KIMSS_JAVA_SDK_WORKFLOW_PAT`
 5. Dry-run mirror: push a no-op to `kimssApi/kimss_sdk/` or trigger `mirror_kimss_sdk.yml` manually.
-6. Verify PyPI package homepage still resolves to `kimss-ai-inc/kimss-python-sdk`.
+6. Verify PyPI package homepage still resolves to `kimss-ai/kimss-python-sdk`.
 7. Re-run Scorecard / bestpractices.dev if repo URLs changed.
 
 Auth on this machine uses the `kimssai` OAuth token in Windows Credential Manager (`git:https://github.com`). On the other computer, use `gh auth login` as `kimssai` or the same credential flow.
@@ -51,7 +51,7 @@ Public repos (`kimss-python-sdk`, `kimss-python-quickstart`, `kimss-java-sdk`, `
 3. **Inventory** of everything owned by `kimssai`:
    - Public repos (four product repos — see inventory below)
    - Deploy keys, PATs, OAuth apps, GitHub Apps
-   - PyPI trusted publisher linkage (`kimss` → `kimss-ai-inc/kimss-python-sdk`)
+   - PyPI trusted publisher linkage (`kimss` → `kimss-ai/kimss-python-sdk`)
    - Maven Central / Sonatype namespace (`com.kimss`)
    - OpenSSF Scorecard / bestpractices.dev project URLs
    - Cursor Marketplace plugin repo references
@@ -97,7 +97,7 @@ If the transform option is unavailable, use Option B.
    | PyPI trusted publisher | GitHub repo path after transfer (usually unchanged if org name matches) |
    | OpenSSF Scorecard | Re-register project URL if slug changes |
    | `bestpractices.dev` | Update repo link |
-   | Docs / README links | `github.com/kimss-ai-inc/*` (same if org keeps name) |
+   | Docs / README links | `github.com/kimss-ai/*` (same if org keeps name) |
 
 5. **Teams**
    - `engineering` — write on SDK + control-plane repos

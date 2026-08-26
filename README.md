@@ -19,6 +19,7 @@ Kimss is not a chat platform. Customers bring their own agents, models, and infr
 
 ## Start here
 
+<<<<<<< HEAD
 | Goal | Where to go |
 |------|-------------|
 | Route OpenAI / Anthropic traffic in 5 minutes | [kimss-python-quickstart](https://github.com/kimss-ai-inc/kimss-python-quickstart) |
@@ -27,6 +28,14 @@ Kimss is not a chat platform. Customers bring their own agents, models, and infr
 | Java control-plane SDK (Maven `com.kimss:kimss-java`) | [kimss-java-sdk](https://github.com/kimss-ai-inc/kimss-java-sdk) |
 | Agent-to-agent integration rules | [AI_INTEGRATION.md](AI_INTEGRATION.md) |
 | Product docs & trust center | [kimss.ai](https://kimss.ai) · [Trust Center](https://kimss.ai/trust) |
+=======
+| Goal | Repo |
+|------|------|
+| Route OpenAI / Anthropic traffic through Kimss in 5 minutes | [kimss-python-quickstart](https://github.com/kimss-ai/kimss-python-quickstart) |
+| Python control-plane SDK (`pip install kimss`) | [kimss-python-sdk](https://github.com/kimss-ai/kimss-python-sdk) |
+| Java control-plane SDK (Maven `com.kimss:kimss-java`) | [kimss-java-sdk](https://github.com/kimss-ai/kimss-java-sdk) |
+| Product docs & trust center | [kimss.ai](https://kimss.ai) |
+>>>>>>> 60d45fa (chore: retarget GitHub owner slugs to kimss-ai after org rename)
 
 ---
 
@@ -132,10 +141,14 @@ Plans meter **governed requests** (not Kimss credits). Developer tier: 25,000/mo
 
 ## Contributing
 
+<<<<<<< HEAD
 See [CONTRIBUTING.md](CONTRIBUTING.md). SSOT for the live API is `kimssApi`. Update this spec when control-plane routes change on `main`.
 
 - Security: [SECURITY.md](SECURITY.md)
 - Code of conduct: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+=======
+See [CONTRIBUTING.md](CONTRIBUTING.md). SSOT for the live API is `kimssApi` (`kimss-ai/kimssApi`). Update this spec when control-plane routes change on `main`.
+>>>>>>> 60d45fa (chore: retarget GitHub owner slugs to kimss-ai after org rename)
 
 ## License
 
