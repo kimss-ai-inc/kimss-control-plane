@@ -12,8 +12,10 @@ Kimss is not a chat platform. Customers bring their own agents, models, and infr
 **Live API:** `https://api.kimss.ai`
 
 <p align="center">
-  <img src="docs/hero-control-plane.svg" alt="Kimss control plane: agents and SDKs connect through identity, policy, audit, metering, and kill switch before reaching vaulted providers and MCP infrastructure." width="100%">
+  <img src="docs/hero-control-plane.png" alt="Kimss control plane: agents and SDKs connect through identity, policy, audit, metering, and kill switch before reaching vaulted providers and MCP infrastructure." width="100%">
 </p>
+
+<p align="center"><sub>Vector source: <a href="docs/hero-control-plane.svg">docs/hero-control-plane.svg</a></sub></p>
 
 ---
 
