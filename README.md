@@ -64,6 +64,14 @@ The Anthropic SDK appends `/v1/messages`. Full setup, env-var path, and troubles
 
 ## Agent-to-agent (A2A)
 
+**Canonical Cascade / Cursor / Claude Code fetch URL:**
+
+```text
+https://raw.githubusercontent.com/kimss-ai/kimss-control-plane/main/AI_INTEGRATION.md
+```
+
+Product paste prompts (Vault → Connect your app → AI coding agent) and [`/docs/route_traffic`](https://kimss.ai/docs/route_traffic) point here — not at the SDK mirror.
+
 Coding agents and automation should:
 
 1. Keep native OpenAI or Anthropic SDKs — **never** use `KimssClient` for chat/completions.
